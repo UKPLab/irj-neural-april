@@ -1,6 +1,6 @@
-# APRIL: Active Preference ReInforcement Learning, for extractive multi-document summarisation.
+# Neural-APRIL: Active Preference Neural ReInforcement Learning, for extractive multi-document summarisation.
 
-This project includes the source code accompanying the following paper:
+This project extends the linear APRIL framework proposed in the paper below:
 
 ```
 @InProceedings{gao:2018:emnlp:april,
@@ -12,21 +12,6 @@ This project includes the source code accompanying the following paper:
   address   = {Brussels, Belgium}
 }
 ```
-
-> **Abstract:** We propose a method to perform automatic document summarisation
-without using reference summaries.
-Instead, our method interactively learns from users' \emph{preferences}.
-The merit of preference-based interactive summarisation is that
-preferences are easier for users to provide than reference summaries.
-Existing preference-based interactive learning methods
-suffer from high sample complexity, i.e.\ they need to interact with
-the oracle for many rounds to converge.
-In this work, we propose a new objective function,
-which enables us to leverage active learning, preference learning
-and reinforcement learning techniques to reduce the sample complexity.
-Both simulation and real-user experiments suggest
-that our method significantly advances the state of the art.
-
 
 Contact person: Yang Gao, gao@ukp.informatik.tu-darmstadt.de
 
@@ -42,16 +27,16 @@ Disclaimer:
 
 
 # System Overview
-APRIL is an interactive document summarisation framework. Instead of learning from reference summaries, APRIL interacts with the users/oracles to obtain preferences, learns a ranking over all summaries from the preferences, and generates (near-)optimal summaries with respect to the learnt ranking.
+APRIL is an interactive document summarisation framework. Instead of learning from reference summaries, APRIL interacts with users/oracles to obtain preferences, learns a ranking over all summaries from the preferences, and generates (near-)optimal summaries with respect to the learnt ranking.
 
 APRIL has three stages:
 * Sample summaries (stage0): randomly generate some summaries and compute their rouge scores. The ROUGE scores are used to simulate users' preferences
-* Active preference learning (stage1): actively query the oracle for multiple rounds, collect preferences and learn a ranking over summaries from the preferences.
-* Reinforcement learning (stage2): read the ranking learnt in stage1 and generate the highest-ranked summary
+* Active preference learning (stage1): query the oracle with active learning strategies for multiple rounds, collect preferences and learn a ranking over summaries from the preferences with preference learning.
+* Reinforcement learning (stage2): use the ranking learnt in stage1 as the rewards to train an RL agent to generate the (near-)optimal summary
 
 
 ## Prerequisties
-* We suggest you to use IDEs like PyCharm to set up this project, so that the package paths are managed automatically.
+* IDEs like PyCharm are suggested to set up this project, so that the package paths are managed automatically.
 * Python3 (tested with Python 3.6 on Ubuntu 16.04 LTS)
 * Install all packages in requirement.txt.
 
@@ -89,7 +74,7 @@ and put them to summariser/jars
 * To write the learnt ranker for use in Stage2, you can turn on the writing functionality by giving 'write_learnt_reward' True. The learnt ranker will be written to directory 'learnt_ranker'.
 
 ## Stage2: Reinforcement Learning
-* Since TD performs much better than LSTD, in the current implementation only TD is included. 
+* Two RL algorithms are included, linear Temporal Difference (TD) and neural TD (NTD)
 * choose reward type: 
     * hueristic (baseline, no interaction)
     * rouge (upper bound, because reference summaries are not available during interaction)

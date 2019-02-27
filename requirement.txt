@@ -1,0 +1,12 @@
+nltk==3.2.5
+numpy==1.14.2
+Pillow==5.1.0
+PuLP==1.6.8
+PyYAML==3.12
+requests==2.18.4
+scikit-learn==0.19.1
+scipy==1.0.1
+six==1.11.0
+sklearn==0.0
+torch==0.3.1
+torchvision==0.2.0
