@@ -12,6 +12,8 @@ This project extends the linear APRIL framework proposed in the paper below:
   address   = {Brussels, Belgium}
 }
 ```
+Major extensions include (i) multiple new active learning stategies for more efficient preference learning, (ii) a logistic noise based simulated user, and (iii) a neural TD algorithm for generating higher-quality summaries.
+
 
 Contact person: Yang Gao, gao@ukp.informatik.tu-darmstadt.de
 
@@ -74,8 +76,11 @@ and put them to summariser/jars
 * To write the learnt ranker for use in Stage2, you can turn on the writing functionality by giving 'write_learnt_reward' True. The learnt ranker will be written to directory 'learnt_ranker'.
 
 ## Stage2: Reinforcement Learning
-* Two RL algorithms are included, linear Temporal Difference (TD) and neural TD (NTD)
-* choose reward type: 
+* run stage2_reinf_learning.py
+* choose the RL algorithm by setting 'rl_type' to:
+    * 'td' if want to use linear TD
+    * 'neural_td' if you want to use neural TD
+* choose 'reward_type': 
     * hueristic (baseline, no interaction)
     * rouge (upper bound, because reference summaries are not available during interaction)
     * learnt (using the ranker learned in stage1 to give rewards). If you go for this option, you also need to sepcify which learnt ranker you want to use by setting 'learnt_rank_setting' to appropriate values. Example settings can be found in the source code.
