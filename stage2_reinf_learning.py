@@ -54,7 +54,7 @@ if __name__ == '__main__':
         summaries, ref_values_dic, heuristic_values_list = readSampleSummaries(dataset,topic)
         vec = Vectoriser(docs,base=base_length,block=block_num)
         if rl_type == 'neural_td':
-            rl_agent = DeepTDAgent('english',dataset,rl_episode,topic,models)
+            rl_agent = DeepTDAgent(vec,summaries,rl_episode,strict)
         else:
             rl_agent = TDAgent(vec,summaries,rl_episode,strict)
 
