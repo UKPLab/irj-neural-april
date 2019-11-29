@@ -1,6 +1,6 @@
 # Preference-based Interactive Multi-Document Summarisation: A Deep Reinforcement Learning based Approach
 
-This project includes the code for the paper [Preference-based Interactive Multi-Document Summarisation](https://doi.org/10.1007/s10791-019-09367-8):
+This project includes the code for the paper [Preference-based Interactive Multi-Document Summarisation](https://doi.org/10.1007/s10791-019-09367-8), publised on Information Retrieval Journal in Nov 2019:
 
 ```
 @Article{gao-irj-2019,
