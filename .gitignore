@@ -1,6 +1,7 @@
 __pycache__/resources.cpython-36.pyc
 *.pyc
 .idea/
+venv_duc_irj/
 summariser/rouge/__init__.pyc
 summariser/rouge/rouge.pyc
 summariser/utils/corpus_reader.pyc

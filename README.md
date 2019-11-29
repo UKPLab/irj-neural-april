@@ -1,19 +1,22 @@
-# Neural-APRIL: Active Preference Neural ReInforcement Learning, for extractive multi-document summarisation.
+# Preference-based Interactive Multi-Document Summarisation: A Deep Reinforcement Learning based Approach
 
-This project extends the linear APRIL framework proposed in the paper below:
+This project includes the code for the paper [Preference-based Interactive Multi-Document Summarisation](https://doi.org/10.1007/s10791-019-09367-8):
 
 ```
-@InProceedings{gao:2018:emnlp:april,
-  author    = {Yang Gao and Christian M. Meyer and Iryna Gurevych},
-  title     = {APRIL: Interactively Learning to Summarise by Combining Active Preference Learning and Reinforcement Learning},
-  booktitle = {Proceedings of the 2018 Conference on Conference on Empirical Methods in Natural Language Processing {(EMNLP)}},
-  month     = August,
-  year      = {2018},
-  address   = {Brussels, Belgium}
+@Article{gao-irj-2019,
+    author="Gao, Yang
+    and Meyer, Christian M.
+    and Gurevych, Iryna",
+    title="Preference-based interactive multi-document summarisation",
+    journal="Information Retrieval Journal",
+    year="2019",
+    month="Nov",
+    day="19",
+    issn="1573-7659",
+    doi="10.1007/s10791-019-09367-8",
+    url="https://doi.org/10.1007/s10791-019-09367-8"
 }
 ```
-Major extensions include (i) multiple new active learning stategies for more efficient preference learning, (ii) a logistic noise based simulated user, and (iii) a neural TD algorithm for generating higher-quality summaries.
-
 
 Contact person: Yang Gao, gao@ukp.informatik.tu-darmstadt.de
 
@@ -29,7 +32,7 @@ Disclaimer:
 
 
 # System Overview
-APRIL is an interactive document summarisation framework. Instead of learning from reference summaries, APRIL interacts with users/oracles to obtain preferences, learns a ranking over all summaries from the preferences, and generates (near-)optimal summaries with respect to the learnt ranking.
+The system proposed in this work is called *APRIL*, Active Preference-based ReInforcement Learning for multi-document summarisation. APRIL is an interactive document summarisation framework. Instead of learning from reference summaries, APRIL interacts with users/oracles to obtain preferences, learns a ranking over all summaries from the preferences, and generates (near-)optimal summaries with respect to the learnt ranking.
 
 APRIL has three stages:
 * Sample summaries (stage0): randomly generate some summaries and compute their rouge scores. The ROUGE scores are used to simulate users' preferences

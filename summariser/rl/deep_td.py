@@ -116,18 +116,20 @@ class DeepTDAgent:
                         str_vec += '{}:{};'.format(ii,vv)
                 str_vec_list.append(str_vec)
 
+        if len(vec_list) == 0: return 0
         # get action that results in highest values
         variable = Variable(torch.from_numpy(np.array(vec_list)).float())
         values = self.deep_model(variable)
         values_list = values.data.numpy()
+        values_list = [v[0] for v in values_list]
         #print('vectors list: ')
         #for vv in str_vec_list:
             #print(vv)
         max_value = float('-inf')
         max_idx = -1
         for ii,value in enumerate(values_list):
-            if value[0] > max_value:
-                max_value = value[0]
+            if value > max_value:
+                max_value = value
                 max_idx = ii
 
         if terminate_reward > max_value:
@@ -157,12 +159,14 @@ class DeepTDAgent:
 
     def deepTrain(self, vec_list, last_reward):
         value_variables = self.deep_model(Variable(torch.from_numpy(np.array(vec_list)).float()))
+        #print('value var', value_variables)
         value_list = value_variables.data.numpy()
         target_list = []
         for idx in range(len(value_list)-1):
             target_list.append(self.gamma*value_list[idx+1][0])
         target_list.append(last_reward)
-        target_variables = Variable(torch.from_numpy(np.array(target_list)).float())
+        target_variables = Variable(torch.from_numpy(np.array(target_list)).float()).unsqueeze(0).view(-1,1)
+        #print('target var', target_variables)
 
         loss_fn = torch.nn.MSELoss()
         loss = loss_fn(value_variables,target_variables)
@@ -172,4 +176,6 @@ class DeepTDAgent:
         self.optimiser.step()
 
         return loss.item()
+
+
 

@@ -14,21 +14,30 @@ def sigmoid(x,temp=1.):
     return 1.0/(1.+math.exp(-x/temp))
 
 
-def softmaxSample(value_list,strict,softmax_list=[]):
+def softmaxSample(value_list,strict,softmax_list=[],return_softmax_list=False):
     if len(softmax_list) == 0:
-        softmax_list = getSoftmaxList(value_list,strict)
+        slist = getSoftmaxList(value_list,strict)
+    else:
+        slist = softmax_list
 
     pointer = random.random()*sum(softmax_list)
     tier = 0
     idx = 0
 
-    for value in softmax_list:
+    rtn_idx = -1
+    for value in slist:
         if pointer >= tier and pointer < tier+value:
-            return idx
+            rtn_idx = idx
+            break
         else:
             tier += value
             idx += 1
-    return -1
+
+    if return_softmax_list:
+        return rtn_idx,slist
+    else:
+        return rtn_idx
+
 
 
 def getSoftmaxList(value_list, strict):
