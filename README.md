@@ -21,6 +21,7 @@ This project includes the code for the paper [Preference-based Interactive Multi
 Contact person: Yang Gao, yang.gao@rhul.ac.uk
 
 https://sites.google.com/site/yanggaoalex/home
+
 https://www.ukp.tu-darmstadt.de/
 
 Don't hesitate to send us an e-mail or report an issue, if something is broken (and it shouldn't be) or if you have further questions
